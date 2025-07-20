@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kafica Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Bitcount Grid Single -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Bitcount+Prop+Single:wght@100..900&family=Lexend+Giga:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Bitcount Grid Single', sans-serif;
+            background-color: #111827; /* bg-stone-500-900 */
+            color: #F9FAFB; /* text-stone-50 */
+        }
+        .hero-bg {
+            background-image: linear-gradient(to bottom, rgba(165, 0, 54, 0.6), rgba(118, 113, 108, 1));
+            background-size: cover;
+            background-position: center;
+        }
+        .gallery-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.01);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        /* Modal styles */
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+        .grid-container {
+            display: grid;
+            grid-gap: 1.5rem;
+            grid-auto-rows: 250px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        @media (min-width: 1024px) {
+            .grid-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .grid-item-h-2 { grid-row: span 2; }
+            .grid-item-w-2 { grid-column: span 2; }
+            .grid-item-w-4 { grid-column: span 4; }
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #f97316;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="absolute top-0 left-0 right-0 z-10 p-4 sm:p-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-white">
+                Kafica <span class="font-light text-stone-300"> </span>
+            </h1>
+            <a href="mailto:markoroljic284@gmail.com" class="hidden sm:inline-block bg-rose-950 text-white font-semibold px-4 py-2 rounded-lg hover:bg-rose-600 transition-colors">Contact Me</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-bg min-h-screen flex items-center justify-center text-center p-4">
+            <div class="max-w-3xl">
+                <h2 class="text-4xl md:text-6xl font-light text-white leading-tight mb-4">
+                    Ako je kafa gorka, <br class="hidden sm:block"> onda si ti problem!
+                </h2>
+                <p class="text-lg md:text-xl text-stone-200 max-w-2xl mx-auto">
+                    A conceptual brand identity for a specialty coffee shop that playfully merges traditional Balkan culture with modern coffee aesthetics.
+                </p>
+            </div>
+        </section>
+
+        <!-- About the Project Section -->
+        <section class="py-16 sm:py-24 bg-stone-500">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h3 class="text-3xl font-light text-white mb-4"> Nije samo kafa. To je stav.</h3>
+                    <p class="text-stone-300 text-lg leading-relaxed">
+                        "Kafica" is a brand inspired by family tradition and a deep love for premium coffee. The visual identity portraits classic Balkan customs with witty, modern taglines, creating a memorable and engaging brand experience. We love a good cup of coffee.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="portfolio" class="py-16 sm:py-24 bg-stone-500">
+            <div class="container mx-auto px-4">
+                <h3 class="text-3xl font-light text-white text-center mb-12">Gelerija projektov</h3>
+                
+                <div class="grid-container">
+                    <div class="gallery-item bg-stone-300 rounded-lg overflow-hidden cursor-pointer lg:grid-item-w-4" onclick="openImageModal('Frame 26.png')"><img src="Frame 26.png" alt="Kafica design mockup 7" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item bg-stone-300 rounded-lg overflow-hidden cursor-pointer lg:grid-item-h-2 lg:grid-item-w-2" onclick="openImageModal('Frame 20.png')"><img src="Frame 20.png" alt="Kafica design mockup 1" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item bg-stone-300 rounded-lg overflow-hidden cursor-pointer lg:grid-item-h-2 lg:grid-item-w-2" onclick="openImageModal('Frame 21.png')"><img src="Frame 21.png" alt="Kafica design mockup 2" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item bg-stone-300 rounded-lg overflow-hidden cursor-pointer lg:grid-item-w-4" onclick="openImageModal('Frame 27.png')"><img src="Frame 27.png" alt="Kafica design mockup 8" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item bg-stone-300 rounded-lg overflow-hidden cursor-pointer lg:grid-item-w-2" onclick="openImageModal('Frame 28.png')"><img src="Frame 28.png" alt="Kafica design mockup 9" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item bg-stone-300 rounded-lg overflow-hidden cursor-pointer lg:grid-item-w-2" onclick="openImageModal('Frame 29.png')"><img src="Frame 29.png" alt="Kafica design mockup 10" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item bg-stone-300 rounded-lg overflow-hidden cursor-pointer lg:grid-item-h-2" onclick="openImageModal('Frame 22.png')"><img src="Frame 22.png" alt="Kafica design mockup 3" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item bg-stone-300 rounded-lg overflow-hidden cursor-pointer" onclick="openImageModal('Stiker 3.png')"><img src="Stiker 3.png" alt="Kafica Sticker 1" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item bg-stone-300 rounded-lg overflow-hidden cursor-pointer" onclick="openImageModal('Stiker 4.png')"><img src="Stiker 4.png" alt="Kafica Sticker 2" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item bg-stone-300 rounded-lg overflow-hidden cursor-pointer lg:grid-item-h-2" onclick="openImageModal('Frame 24.png')"><img src="Frame 24.png" alt="Kafica design mockup 5" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item bg-stone-300 rounded-lg overflow-hidden cursor-pointer lg:grid-item-w-4" onclick="openImageModal('Group 24.png')"><img src="Group 24.png" alt="Kafica Banner 1" class="w-full h-full object-cover"></div>
+                    <div class="gallery-item bg-stone-300 rounded-lg overflow-hidden cursor-pointer lg:grid-item-w-4" onclick="openImageModal('Group 25.png')"><img src="Group 25.png" alt="Kafica Banner 2" class="w-full h-full object-cover"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Merch Section -->
+        <section class="py-16 sm:py-24 bg-stone-500">
+            <div class="container mx-auto px-4 text-center">
+                <h3 class="text-3xl font-light text-white mb-4">Merch</h3>
+                <p class="text-stone-400 text-lg mb-8 max-w-2xl mx-auto">From apparel to accessories, the "Kafica" brand extends to a full line of merchandise.</p>
+                <button id="viewMerchBtn" class="bg-rose-900 text-white font-semibold px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors text-lg">
+                    View Collection
+                </button>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section class="py-16 sm:py-24 bg-stone-500">
+            <div class="container mx-auto px-4 text-center">
+                <h3 class="text-3xl font-light text-white mb-4">About me</h3>
+                <p class="text-stone-400 text-lg mb-8 max-w-2xl mx-auto">Just an architect trying to learn new skills</p>
+                <button id="viewAboutBtn" class="bg-rose-900 text-white font-semibold px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors text-lg">
+                    View My Profile
+                </button>
+            </div>
+`        
+       
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-500 text-center py-8">
+        <p class="text-rose-800">Brand and website are made for interview purpose only.</p>
+        <p class="text-stone-400 mt-2">markoroljic284@gmail.com</p>
+        <p class="text-stone-400 mt-2">069 731 500</p>
+    </footer>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none" onclick="closeImageModal()">
+        <div class="modal-content max-w-[90vw] max-h-[90vh] transform scale-95" onclick="event.stopPropagation()">
+            <img id="modalImage" src="" alt="Enlarged mockup view" class="w-full h-full object-contain rounded-lg shadow-2xl">
+        </div>
+        <button class="absolute top-4 right-4 text-white text-3xl font-bold" onclick="closeImageModal()">&times;</button>
+    </div>
+
+    <!-- Merch Modal -->
+    <div id="merchModal" class="modal fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none" onclick="closeMerchModal()">
+        <div class="modal-content bg-stone-500 rounded-lg p-6 md:p-8 max-w-5xl w-full max-h-[90vh] overflow-y-auto transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-white">Merch Collection</h2>
+                <button class="text-white text-3xl font-light" onclick="closeMerchModal()">&times;</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-stone-400 rounded-lg p-4 text-center">
+                    <img src="Group 26.png" alt="Kafica T-Shirt" class="w-full h-auto object-contain rounded-md mb-4">
+                    <h4 class="font-semibold text-white">Classic Tee</h4>
+                </div>
+                 <div class="bg-stone-400 rounded-lg p-4 text-center">
+                    <img src="Group 27.png" alt="Kafica Cap with Art" class="w-full h-auto object-contain rounded-md mb-4">
+                    <h4 class="font-semibold text-white">"Art" Cap</h4>
+                </div>
+                 <div class="bg-stone-400 rounded-lg p-4 text-center">
+                    <img src="Group 28.png" alt="Kafica Cap with Logo" class="w-full h-auto object-contain rounded-md mb-4">
+                    <h4 class="font-semibold text-white">"Logo" Cap</h4>
+                </div>
+                 <div class="bg-stone-400 rounded-lg p-4 text-center">
+                    <img src="Group 29.png" alt="Kafica Socks" class="w-full h-auto object-contain rounded-md mb-4">
+                    <h4 class="font-semibold text-white">Classic Socks</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Me Modal -->
+    <div id="aboutModal" class="modal fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none" onclick="closeAboutModal()">
+        <div class="modal-content bg-stone-800 rounded-lg p-6 md:p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-white">About Me & Skills</h2>
+                <button class="text-white text-4xl font-light" onclick="closeAboutModal()">&times;</button>
+            </div>
+            <div class="text-left text-stone-300 space-y-8">
+                <!-- Work Experience Section -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-4 border-b-2 border-orange-500 pb-2">Work Experience</h3>
+                    <div class="mt-4">
+                        <h4 class="font-bold text-xl text-orange-400"> Architect</h4>
+                      
+                        <ul class="list-disc list-inside text-stone-400 space-y-1">
+						<li>Sadar + Vuga  | 2023 </li>
+                              3D modelling and rendering for a competition. 
+                            <li>Studio a+v. | february-april 2025  </p>
+                        <ul class="list-disc list-inside text-stone-400 space-y-1">
+                              Architectural/technical drawings and 3D modelling
+                            
+                        </ul>
+                    </div>
+                </div>
+                <!-- Education Section -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-4 border-b-2 border-orange-500 pb-2">Education</h3>
+                    <div class="mt-4">
+                        <h4 class="font-bold text-xl text-orange-400">Bachelors degree</h4>
+<h4 class="font-bold text-l text-orange-400">5th year/absolvent</h4>
+                        <ul class="list-disc list-inside text-stone-400 space-y-1">
+                        <li>Fakulteta za arhitekturo | 2020 - 2026</li>
+                    </div>
+                </div>
+                <!-- Skills Section -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-4 border-b-2 border-orange-500 pb-2">Skills</h3>
+                    <div class="mt-4 space-y-6">
+                        <!-- Skill 1 -->
+                        <div class="space-y-2">
+                            <p class="font-medium text-stone-300">Adobe Photoshop</p>
+                            <div class="w-full bg-stone-600 rounded-full h-2.5">
+                                <div class="bg-orange-500 h-2.5 rounded-full" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        <!-- Skill 2 -->
+                        <div class="space-y-2">
+                            <p class="font-medium text-stone-300">Adobe Illustrator</p>
+                            <div class="w-full bg-stone-600 rounded-full h-2.5">
+                                <div class="bg-orange-500 h-2.5 rounded-full" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        <!-- Skill 3 -->
+                        <div class="space-y-2">
+                            <p class="font-medium text-stone-300">Adobe InDesign</p>
+                            <div class="w-full bg-stone-600 rounded-full h-2.5">
+                                <div class="bg-orange-500 h-2.5 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <!-- Skill 4 -->
+                        <div class="space-y-2">
+                            <p class="font-medium text-stone-300">Figma</p>
+                            <div class="w-full bg-stone-600 rounded-full h-2.5">
+                                <div class="bg-orange-500 h-2.5 rounded-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <!-- Skill 5 -->
+                        <div class="space-y-2">
+                            <p class="font-medium text-stone-300">Rhino 3D</p>
+                            <div class="w-full bg-stone-600 rounded-full h-2.5">
+                                <div class="bg-orange-500 h-2.5 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <!-- Skill 6 -->
+                        <div class="space-y-2">
+                            <p class="font-medium text-stone-300">AutoCAD</p>
+                            <div class="w-full bg-stone-600 rounded-full h-2.5">
+                                <div class="bg-orange-500 h-2.5 rounded-full" style="width: 80%"></div>
+                            </div>	
+							
+                        </div>
+						
+						<!-- Skill 7 -->
+						<div class="space-y-2">
+                            <p class="font-medium text-stone-300">Teamwork</p>
+                            <div class="w-full bg-stone-600 rounded-full h-2.5">
+                                <div class="bg-orange-500 h-2.5 rounded-full" style="width: 110%"></div>
+                            </div>	
+							
+                        </div>
+						
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Modal Logic ---
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const merchModal = document.getElementById('merchModal');
+        const aboutModal = document.getElementById('aboutModal');
+        const viewMerchBtn = document.getElementById('viewMerchBtn');
+        const viewAboutBtn = document.getElementById('viewAboutBtn');
+
+        function openImageModal(imageSrc) {
+            if (imageModal && modalImage) {
+                modalImage.src = imageSrc;
+                imageModal.classList.remove('opacity-0', 'pointer-events-none');
+                imageModal.querySelector('.modal-content').classList.remove('scale-95');
+            }
+        }
+
+        function closeImageModal() {
+            if (imageModal) {
+                imageModal.classList.add('opacity-0', 'pointer-events-none');
+                imageModal.querySelector('.modal-content').classList.add('scale-95');
+            }
+        }
+
+        function openMerchModal() {
+            if (merchModal) {
+                merchModal.classList.remove('opacity-0', 'pointer-events-none');
+                merchModal.querySelector('.modal-content').classList.remove('scale-95');
+            }
+        }
+
+        function closeMerchModal() {
+            if (merchModal) {
+                merchModal.classList.add('opacity-0', 'pointer-events-none');
+                merchModal.querySelector('.modal-content').classList.add('scale-95');
+            }
+        }
+
+        function openAboutModal() {
+            if (aboutModal) {
+                aboutModal.classList.remove('opacity-0', 'pointer-events-none');
+                aboutModal.querySelector('.modal-content').classList.remove('scale-95');
+            }
+        }
+
+        function closeAboutModal() {
+            if (aboutModal) {
+                aboutModal.classList.add('opacity-0', 'pointer-events-none');
+                aboutModal.querySelector('.modal-content').classList.add('scale-95');
+            }
+        }
+        
+        viewMerchBtn.addEventListener('click', openMerchModal);
+        viewAboutBtn.addEventListener('click', openAboutModal);
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+                closeMerchModal();
+                closeAboutModal();
+            }
+        });
+
+        // --- Gemini API Logic ---
+        const generateSloganBtn = document.getElementById('generateSloganBtn');
+        const sloganResult = document.getElementById('sloganResult');
+        const loader = document.getElementById('loader');
+
+        generateSloganBtn.addEventListener('click', generateSlogans);
+
+        async function generateSlogans() {
+            sloganResult.innerHTML = '';
+            loader.classList.remove('hidden');
+            generateSloganBtn.disabled = true;
+
+            const prompt = `Generate 5 short, witty, and modern marketing slogans for a specialty coffee brand named "Kafica". The brand's concept is a playful mix of traditional Balkan culture and modern coffee aesthetics. The tone should be humorous and slightly provocative, similar to the existing slogan "Ako je kafa gorka, onda si ti problem!" (If the coffee is bitter, you are the problem!). The slogans should be in both English and Serbo-Croatian (latin script).`;
+
+            try {
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; 
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API request failed with status ${response.status}`);
+                }
+                
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    sloganResult.innerHTML = text.replace(/\n/g, '<br>');
+                } else {
+                    sloganResult.innerHTML = '<p class="text-red-400">Sorry, could not generate slogans at this time. Please try again later.</p>';
+                    console.error('Unexpected API response structure:', result);
+                }
+
+            } catch (error) {
+                console.error('Error calling Gemini API:', error);
+                sloganResult.innerHTML = `<p class="text-red-400">An error occurred: ${error.message}</p>`;
+            } finally {
+                loader.classList.add('hidden');
+                generateSloganBtn.disabled = false;
+            }
+        }
+    </script>
+
+</body>
+</html>
